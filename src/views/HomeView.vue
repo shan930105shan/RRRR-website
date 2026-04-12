@@ -1,7 +1,12 @@
 <template>
-  <main class="pt-[80px] bg-white min-h-screen">
+  <main class="pt-[80px] bg-white min-h-screen relative">
     
-    <section class="w-full flex justify-center items-center py-[40px]">
+    <FloatingEmoji :activeIndex="activeIndex" />
+
+    <section 
+      ref="section0" 
+      class="w-full flex justify-center items-center py-[40px]"
+    >
       <div class="w-[90%] max-w-[1400px]">
         <video autoplay muted loop playsinline class="w-full h-auto block">
           <source src="@/assets/hero-video.mp4" type="video/mp4" />
@@ -9,7 +14,10 @@
       </div>
     </section>
 
-    <section class="w-full overflow-hidden border-t border-black py-[25px] bg-white group">
+    <section 
+      ref="section1"
+      class="w-full overflow-hidden border-t border-black py-[25px] bg-white group"
+    >
       <div class="flex w-max animate-[scroll-left_40s_linear_infinite] group-hover:[animation-play-state:paused]">
         <div class="flex items-center" v-for="i in 2" :key="i">
           <div class="flex items-center px-[40px] whitespace-nowrap">
@@ -39,7 +47,10 @@
       </div>
     </section>
 
-    <section class="w-full py-[100px] px-[5%] flex justify-center bg-white">
+    <section 
+      ref="section2"
+      class="w-full py-[100px] px-[5%] flex justify-center bg-white"
+    >
       <div class="max-w-[1200px] w-full flex flex-col md:flex-row items-center gap-[60px]">
         <div class="flex-1 text-left">
           <h2 class="text-[2rem] font-[800] mb-[30px] leading-[1.4]">“ 吐出我們不懼破格的無限延續創造力 ”</h2>
@@ -55,7 +66,10 @@
       </div>
     </section>
 
-    <section class="w-full py-[60px] pb-[100px] flex justify-center bg-white">
+    <section 
+      ref="section3"
+      class="w-full py-[60px] pb-[100px] flex justify-center bg-white"
+    >
       <div class="w-[90%] max-w-[1400px] aspect-[16/9] md:aspect-[21/4] overflow-hidden bg-black">
         <video autoplay muted loop playsinline class="w-full h-full object-cover">
           <source src="@/assets/promo-video.mp4" type="video/mp4" />
@@ -63,7 +77,9 @@
       </div>
     </section>
 
-    <WorkScrollSection :works="workList" id="work-introduction" />
+    <div ref="section4">
+      <WorkScrollSection :works="workList" id="work-introduction" />
+    </div>
 
     <section class="w-full py-[100px] px-[5%] bg-white border-t border-black">
       <div class="max-w-[1200px] mx-auto w-full">
@@ -86,10 +102,51 @@
   </main>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue';
 import WorkScrollSection from '@/components/WorkScrollSection.vue';
 import RotatingArrow from '@/components/RotatingArrow.vue';
-import arrowImg from '@/assets/rrrr-logo-graffiti.png'; // 引入圖片路徑
+import FloatingEmoji from '@/components/FloatingEmoji.vue'; // 引入組件
+import arrowImg from '@/assets/rrrr-logo-graffiti.png';
+
+// --- 滾動偵測與索引管理 ---
+const activeIndex = ref(0);
+const section0 = ref<HTMLElement | null>(null);
+const section1 = ref<HTMLElement | null>(null);
+const section2 = ref<HTMLElement | null>(null);
+const section3 = ref<HTMLElement | null>(null);
+const section4 = ref<HTMLElement | null>(null);
+
+let observer: IntersectionObserver | null = null;
+
+onMounted(() => {
+  const sectionRefs = [section0, section1, section2, section3, section4];
+  
+  // 設定交叉觀察器
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        // 找出當前進入視窗的是哪一個區塊
+        const index = sectionRefs.findIndex(refItem => refItem.value === entry.target);
+        if (index !== -1) {
+          activeIndex.value = index;
+        }
+      }
+    });
+  }, {
+    threshold: 0.3, // 區塊露出 30% 即算切換
+    rootMargin: "-10% 0px -10% 0px" // 微調觸發範圍，讓切換更精準
+  });
+
+  // 開始觀察
+  sectionRefs.forEach(s => {
+    if (s.value) observer?.observe(s.value);
+  });
+});
+
+onUnmounted(() => {
+  observer?.disconnect();
+});
 
 // 作品資料
 const workList = [
@@ -103,7 +160,7 @@ const workList = [
 </script>
 
 <style>
-/* 跑馬燈動畫仍需保留在全域或此處，Tailwind config 亦可設定 */
+/* 跑馬燈動畫 */
 @keyframes scroll-left {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }

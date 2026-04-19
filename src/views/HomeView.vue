@@ -53,7 +53,7 @@
     >
       <div class="max-w-[1200px] w-full flex flex-col md:flex-row items-center gap-[60px]">
         <div class="flex-1 text-left">
-          <h2 class="text-[2rem] font-[800] mb-[30px] leading-[1.4]">“ 吐出我們不懼破格的無限延續創造力 ”</h2>
+          <h2 class="text-[1.8rem] font-[800] mb-[30px] leading-[1.4]">“ 吐出我們不懼破格的無限延續創造力 ”</h2>
           <div class="text-[1rem] leading-[1.8] text-[#333] tracking-[0.05rem]">
             <p class="mb-[20px]">在網站設計上，我們將「破圖」的精神融入視覺互動：部分關鍵圖像將以 3D 方式呈現，並結合滑鼠互動。體驗者在瀏覽時，這些元素將搭配「破圖」動畫變化，讓您直觀地感受到打破僵固界限展現的創造力。</p>
             <p>本畢業製作網頁採用一頁式設計，旨在提供連貫沉浸的體驗。當體驗者平滑滾動時，即是參與創作產出的探索旅程。各組作品資訊將配合流暢動畫呈現在網站中；而每一次點擊，都將如爆破般的能量釋放。</p>
@@ -66,6 +66,7 @@
       </div>
     </section>
 
+    <ScrollVideoSection />
     <section 
       ref="section3"
       class="w-full py-[60px] pb-[100px] flex justify-center bg-white"
@@ -81,23 +82,9 @@
       <WorkScrollSection :works="workList" id="work-introduction" />
     </div>
 
-    <section class="w-full py-[100px] px-[5%] bg-white border-t border-black">
-      <div class="max-w-[1200px] mx-auto w-full">
-        <div class="flex items-center gap-5 mb-12">
-          <span class="text-[2.5rem]">→</span>
-          <h2 class="text-[2rem] font-[800]" id="promotional-video">宣傳片</h2>
-        </div>
-        
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-10">
-          <div class="h-32 flex items-center justify-center border border-dashed border-gray-300 text-gray-400">
-            Coming Soon
-          </div>
-          <div class="h-32 flex items-center justify-center border border-dashed border-gray-300 text-gray-400">
-            Coming Soon
-          </div>
-        </div>
-      </div>
-    </section>
+    <div ref="section5">
+     <TeaserSection />
+     </div>
 
   </main>
 </template>
@@ -108,6 +95,8 @@ import WorkScrollSection from '@/components/WorkScrollSection.vue';
 import RotatingArrow from '@/components/RotatingArrow.vue';
 import FloatingEmoji from '@/components/FloatingEmoji.vue'; // 引入組件
 import arrowImg from '@/assets/rrrr-logo-graffiti.png';
+import ScrollVideoSection from '@/components/ScrollVideoSection.vue';
+import TeaserSection from '@/components/TeaserSection.vue';
 
 // --- 滾動偵測與索引管理 ---
 const activeIndex = ref(0);

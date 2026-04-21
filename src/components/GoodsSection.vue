@@ -41,7 +41,7 @@ onMounted(() => {
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: sectionRef.value,
-      start: "top 60%",
+      start: "top 10%",
       toggleActions: "play none none none"
     }
   });
@@ -90,7 +90,7 @@ onMounted(() => {
         />
         
         <div class="absolute inset-0 z-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-            <span class="text-white text-xl font-black bg-black/60 px-4 py-2 rounded-sm backdrop-blur-md">
+            <span class="text-white text-xl font-black bg-black px-4 py-2 rounded-sm backdrop-blur-md">
             {{ item.price }}
             </span>
         </div>

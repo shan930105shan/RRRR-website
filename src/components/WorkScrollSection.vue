@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 // --- 引入 Swiper 核心 ---
 import { Swiper, SwiperSlide } from 'swiper/vue';
+import type { Swiper as SwiperClass } from 'swiper/types';
 import 'swiper/css';
 
 // 引入你的組件與資源
@@ -48,11 +49,11 @@ const getTagImg = (id: number, isActive: boolean) => {
 };
 
 // --- Swiper 相關函式 ---
-const onSwiper = (swiper: any) => {
+const onSwiper = (swiper: SwiperClass) => {
   swiperRef.value = swiper;
 };
 
-const onSlideChange = (swiper: any) => {
+const onSlideChange = (swiper: SwiperClass) => {
   currentIndex.value = swiper.realIndex;
 };
 

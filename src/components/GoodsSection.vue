@@ -11,10 +11,10 @@ const goodsItems = ref([]);
 
 // 準備你的四張圖
 const goods = [
-  { id: 1, name: '卡套', src: new URL('@/assets/goods/card-case.png', import.meta.url).href, class: 'w-120 top-[20%] right-[25%]' },
-  { id: 2, name: '織帶', src: new URL('@/assets/goods/ribbon.png', import.meta.url).href, class: 'w-80 top-40 right-[15%]' },
-  { id: 3, name: '書籤', src: new URL('@/assets/goods/bookmark.png', import.meta.url).href, class: 'w-56 top-[40%] left-[20%]' },
-  { id: 4, name: '貼紙包', src: new URL('@/assets/goods/stickers.png', import.meta.url).href, class: 'w-40 top-[35%] right-[30%]' },
+  { id: 1, name: '卡套', src: new URL('@/assets/goods/card-case.png', import.meta.url).href, class: 'w-120 -top-80 right-[25%]' },
+  { id: 2, name: '織帶', src: new URL('@/assets/goods/ribbon.png', import.meta.url).href, class: 'w-120 -top-30 right-[20%]' },
+  { id: 3, name: '書籤', src: new URL('@/assets/goods/bookmark.png', import.meta.url).href, class: 'w-200 top-40 left-[20%]' },
+  { id: 4, name: '貼紙包', src: new URL('@/assets/goods/stickers.png', import.meta.url).href, class: 'w-120 top-10 right-[15%]' },
 ];
 
 onMounted(() => {
@@ -32,7 +32,6 @@ onMounted(() => {
     rotation: -15,     // 掉落時帶一點旋轉更自然
     opacity: 0,
     duration: 1.2,
-    ease: "bounce.out", // 使用彈跳效果，模擬掉到定位的衝擊感
     stagger: 0.3,       // 每張圖片間隔 0.3 秒出現
     onComplete: () => {
       // 掉落完成後，為每一張圖片開啟平滑浮動
@@ -52,10 +51,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <section ref="sectionRef" class="relative w-full min-h-screen bg-white overflow-hidden py-20 px-10">
+  <section ref="sectionRef" class="relative w-full min-h-screen bg-white py-20 px-10">
     
     <div class="absolute top-10 left-10 w-40 md:w-40 z-20">
-      <img :src="goodsTitle" alt="Taser 前導片" class="w-full h-auto object-contain" />
+      <img :src="goodsTitle" alt="周邊" class="w-full h-auto object-contain" />
     </div>
 
     <div class="relative w-full h-[800px] max-w-[1200px] mx-auto">
@@ -67,7 +66,6 @@ onMounted(() => {
         :class="item.class"
       >
         <img :src="item.src" :alt="item.name" class="w-full h-auto object-contain drop-shadow-2xl" />
-        <span class="block text-sm font-bold mt-2 text-center">（{{ item.name }}）</span>
       </div>
     </div>
 

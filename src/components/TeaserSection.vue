@@ -60,11 +60,10 @@ const teaserVideos = [
             class="w-full h-full object-cover"
             :class="video.ratio"
           ></video>
-          
-          <div v-if="video.id === 3 || video.id === 4" 
-               class="absolute w-8 h-8 bg-black"
-               :class="video.id === 3 ? '-bottom-4 -right-4' : '-top-4 -left-4'">
-          </div>
+        </div>
+        <div v-if="video.id === 3 || video.id === 4" 
+               class="absolute w-12 h-12 bg-black z-20"
+               :class="video.id === 3 ? '-bottom-3 -right-4' : '-top-4 -left-4'">
         </div>
 
         <p class="mt-3 text-sm font-medium text-black font-mono">

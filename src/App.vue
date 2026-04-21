@@ -14,4 +14,9 @@ body {
   margin: 0;
   background-color: white;
 }
+/* 當 body 被鎖定滾動時（Modal 開啟時），隱藏 Navbar */
+body[style*="overflow: hidden"] nav, 
+body[style*="overflow: hidden"] .navbar{
+  display: none;
+}
 </style>

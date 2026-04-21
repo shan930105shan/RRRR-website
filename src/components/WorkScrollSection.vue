@@ -2,23 +2,30 @@
 import { ref } from 'vue';
 // --- 引入 Swiper 核心 ---
 import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Mousewheel } from 'swiper/modules'; // 如果想支援滾輪
 import 'swiper/css';
 
+// 引入你的組件與資源
+import WorkModal from './WorkModal.vue'; 
 import tagLineImg from '@/assets/tags/tagLine.png';
+// 🎈 引入你寫好的詳細資料
+import { WORK_DATA } from '@/constants/works'; 
 
 const totalWorks = 19;
 const currentIndex = ref(0);
-const swiperRef = ref<any>(null); // 用來儲存 Swiper 實體
+const swiperRef = ref<any>(null);
 
-// 1. 作品資料
+// 控制彈窗狀態
+const isModalOpen = ref(false);
+const activeWork = ref<any>(null);
+
+// 1. 維持原本的作品清單（自動抓取 group1 ~ 19 的第一張圖作為封面）
 const works = Array.from({ length: totalWorks }, (_, i) => ({
   id: i + 1,
   title: `Project ${String(i + 1).padStart(2, '0')}`,
   img: new URL(`../assets/work/group${i + 1}/1.png`, import.meta.url).href 
 }));
 
-// 2. 標籤座標 (維持你的設定)
+// 2. 🎈 補齊 19 個標籤座標 (配合 tagLine 的流動感設定)
 const tagConfigs = [
   { id: 1,  top: '20px',  left: '10%' }, { id: 2,  top: '25px',  left: '15%' },
   { id: 3,  top: '20px',  left: '20%' }, { id: 4,  top: '25px',  left: '25%' },
@@ -32,6 +39,7 @@ const tagConfigs = [
   { id: 19, top: '100px', left: '78%' },
 ];
 
+// 取得標籤圖片邏輯
 const getTagImg = (id: number, isActive: boolean) => {
   const status = isActive ? 'Active' : 'Normal';
   return new URL(`../assets/tags/tag${id}${status}.png`, import.meta.url).href;
@@ -43,13 +51,35 @@ const onSwiper = (swiper: any) => {
 };
 
 const onSlideChange = (swiper: any) => {
-  // 使用 realIndex 才能在 loop 模式下抓到正確的 0~18
   currentIndex.value = swiper.realIndex;
 };
 
 const selectWork = (index: number) => {
-  // 讓 Swiper 跳轉到對應索引
   swiperRef.value?.slideToLoop(index);
+};
+
+// --- 🎈 彈窗處理邏輯 ---
+const handleWorkClick = (simpleWork: any, isActive: boolean, index: number) => {
+  if (isActive) {
+    // 透過點擊的作品 id，去 WORK_DATA 裡找到對應的詳細資料
+    const fullDetail = WORK_DATA.find(item => item.id === simpleWork.id);
+    
+    if (fullDetail) {
+      activeWork.value = fullDetail;
+      isModalOpen.value = true;
+      document.body.style.overflow = 'hidden'; // 開啟時鎖定頁面滾動
+    } else {
+      console.error(`找不到 ID 為 ${simpleWork.id} 的詳細資料，請確認 works.ts 內容`);
+    }
+  } else {
+    // 如果點擊的是兩側的作品，則滑動到中間
+    selectWork(index);
+  }
+};
+
+const closePopup = () => {
+  isModalOpen.value = false;
+  document.body.style.overflow = ''; // 關閉時恢復頁面滾動
 };
 </script>
 
@@ -76,12 +106,10 @@ const selectWork = (index: number) => {
 
     <div class="relative w-full px-4 group">
       <swiper
-        :modules="[Mousewheel]"
         :loop="true"
         :centeredSlides="true"
         :slidesPerView="1.5"
         :spaceBetween="20"
-        :mousewheel="true"
         :breakpoints="{
           '768': { slidesPerView: 3, spaceBetween: 30 },
           '1024': { slidesPerView: 5, spaceBetween: 40 }
@@ -98,6 +126,7 @@ const selectWork = (index: number) => {
           <div 
             class="transition-all duration-500 ease-out cursor-pointer py-10"
             :class="[isActive ? 'scale-120 opacity-100' : 'scale-75 opacity-30 blur-[1px] grayscale']"
+            @click="handleWorkClick(work, isActive, index)"
           >
             <div class="relative aspect-[3/4] bg-white border-[1px] border-black overflow-hidden">
               <img :src="work.img" class="w-full h-full object-cover" />
@@ -113,22 +142,19 @@ const selectWork = (index: number) => {
         →
       </button>
     </div>
+
+    <WorkModal 
+      :isOpen="isModalOpen" 
+      :work="activeWork" 
+      @close="closePopup" 
+    />
+    
   </section>
 </template>
 
 <style scoped>
-/* 確保標籤區塊不會擋住下方的滑動 */
+/* 保持樣式 ... */
 .relative { z-index: 1; }
-
-@keyframes slide-up {
-  from { transform: translateY(100%); }
-  to { transform: translateY(0); }
-}
-.animate-in {
-  animation: slide-up 0.4s ease-out;
-}
-
-/* 讓 Swiper 容器可以顯示出縮放後超出的部分 */
 :deep(.swiper) {
   overflow: visible !important;
 }

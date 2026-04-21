@@ -50,8 +50,14 @@
       </div>
     </section>
 
+    <div ref="section2">
+      <ConceptSection />
+    </div>
+    
+    <ScrollVideoSection />
+
     <section 
-      ref="section2"
+      ref="section3"
       class="w-full py-[100px] px-[5%] flex justify-center bg-white"
     >
       <div class="max-w-[1200px] w-full flex flex-col md:flex-row items-center gap-[60px]">
@@ -66,19 +72,6 @@
         <div class="flex-1 mt-10 md:mt-0">
           <RotatingArrow :src="arrowImg" className="w-full max-w-[500px] h-auto" />
         </div>
-      </div>
-    </section>
-
-    <ScrollVideoSection />
-
-    <section 
-      ref="section3"
-      class="w-full py-[60px] pb-[100px] flex justify-center bg-white"
-    >
-      <div class="w-[90%] max-w-[1400px] aspect-[16/9] md:aspect-[21/4] overflow-hidden bg-black">
-        <video autoplay muted loop playsinline class="w-full h-full object-cover">
-          <source src="@/assets/promo-video.mp4" type="video/mp4" />
-        </video>
       </div>
     </section>
 
@@ -101,6 +94,8 @@ import FloatingEmoji from '@/components/FloatingEmoji.vue'; // 引入組件
 import arrowImg from '@/assets/rrrr-logo-graffiti.png';
 import ScrollVideoSection from '@/components/ScrollVideoSection.vue';
 import TeaserSection from '@/components/TeaserSection.vue';
+import ConceptSection from '@/components/ConceptSection.vue';
+
 
 // --- 滾動偵測與索引管理 ---
 const activeIndex = ref(0);

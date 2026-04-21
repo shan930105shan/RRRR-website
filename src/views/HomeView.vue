@@ -76,11 +76,15 @@
     </section>
 
     <div ref="section4">
-      <WorkScrollSection :works="workList" id="work-introduction" />
+      <WorkScrollSection/>
     </div>
 
     <div ref="section5">
      <TeaserSection />
+     </div>
+
+     <div ref="section6">
+     <GoodsSection />
      </div>
 
   </main>
@@ -95,6 +99,7 @@ import arrowImg from '@/assets/rrrr-logo-graffiti.png';
 import ScrollVideoSection from '@/components/ScrollVideoSection.vue';
 import TeaserSection from '@/components/TeaserSection.vue';
 import ConceptSection from '@/components/ConceptSection.vue';
+import GoodsSection from '@/components/GoodsSection.vue'; 
 
 
 // --- 滾動偵測與索引管理 ---
@@ -135,16 +140,6 @@ onMounted(() => {
 onUnmounted(() => {
   observer?.disconnect();
 });
-
-// 作品資料
-const workList = [
-  { title: 'C 計劃', fullDesc: '這裡填入關於 C 計劃的詳細介紹內容...', img: '/src/assets/work1.jpg' },
-  { title: 'RE:ARM', fullDesc: '這裡填入關於 RE:ARM 的詳細介紹內容...', img: '/src/assets/work2.jpg' },
-  { title: '審判之手', fullDesc: '這裡填入關於 審判之手 的詳細介紹內容...', img: '/src/assets/work3.jpg' },
-  { title: '警戒深宵', fullDesc: '這裡填入關於 警戒深宵 的詳細介紹內容...', img: '/src/assets/work4.jpg' },
-  { title: '晶簇韻律', fullDesc: '這裡填入關於 晶簇韻律 的詳細介紹內容...', img: '/src/assets/work5.jpg' },
-  { title: 'Dionysus', fullDesc: '這裡填入關於 Dionysus 的詳細介紹內容...', img: '/src/assets/work7.jpg' },
-];
 </script>
 
 <style>

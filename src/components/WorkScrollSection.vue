@@ -7,6 +7,8 @@ import 'swiper/css';
 // 引入你的組件與資源
 import WorkModal from './WorkModal.vue'; 
 import tagLineImg from '@/assets/tags/tagLine.png';
+import tagLineImg2 from '@/assets/tags/tagLine2.png';
+import workTitle from '@/assets/work-title.png';
 // 🎈 引入你寫好的詳細資料
 import { WORK_DATA } from '@/constants/works'; 
 
@@ -27,16 +29,16 @@ const works = Array.from({ length: totalWorks }, (_, i) => ({
 
 // 2. 🎈 補齊 19 個標籤座標 (配合 tagLine 的流動感設定)
 const tagConfigs = [
-  { id: 1,  top: '20px',  left: '10%' }, { id: 2,  top: '25px',  left: '15%' },
-  { id: 3,  top: '20px',  left: '20%' }, { id: 4,  top: '25px',  left: '25%' },
-  { id: 5,  top: '20px',  left: '32%' }, { id: 6,  top: '25px',  left: '37%' },
-  { id: 7,  top: '20px',  left: '42%' }, { id: 8,  top: '25px',  left: '47%' },
-  { id: 9,  top: '20px',  left: '54%' }, { id: 10, top: '25px',  left: '59%' },
-  { id: 11, top: '20px',  left: '64%' }, { id: 12, top: '25px',  left: '69%' },
-  { id: 13, top: '100px', left: '45%' }, { id: 14, top: '105px', left: '50%' },
-  { id: 15, top: '100px', left: '55%' }, { id: 16, top: '105px', left: '60%' },
-  { id: 17, top: '100px', left: '68%' }, { id: 18, top: '105px', left: '73%' },
-  { id: 19, top: '100px', left: '78%' },
+  { id: 1,  top: '20px',  left: '35%' }, { id: 2,  top: '25px',  left: '40%' },
+  { id: 3,  top: '20px',  left: '45%' }, { id: 4,  top: '25px',  left: '50%' },
+  { id: 5,  top: '20px',  left: '55%' }, { id: 6,  top: '25px',  left: '60%' },
+  { id: 7,  top: '20px',  left: '65%' }, { id: 8,  top: '25px',  left: '70%' },
+  { id: 9,  top: '20px',  left: '75%' }, { id: 10, top: '25px',  left: '80%' },
+  { id: 11, top: '20px',  left: '85%' }, { id: 12, top: '25px',  left: '90%' },
+  { id: 13, top: '100px', left: '57%' }, { id: 14, top: '105px', left: '62%' },
+  { id: 15, top: '100px', left: '67%' }, { id: 16, top: '105px', left: '72%' },
+  { id: 17, top: '100px', left: '80%' }, { id: 18, top: '105px', left: '85%' },
+  { id: 19, top: '100px', left: '90%' },
 ];
 
 // 取得標籤圖片邏輯
@@ -85,11 +87,20 @@ const closePopup = () => {
 
 <template>
   <section class="w-full py-20 bg-white overflow-hidden relative">
+
+    <div class="absolute top-10 left-10 w-30 md:w-30 z-20">
+      <img :src="workTitle" alt="Taser 前導片" class="w-full h-auto object-contain" />
+    </div>
     
     <div class="relative w-full h-[180px] mb-12 max-w-[1400px] mx-auto">
       <img 
         :src="tagLineImg" 
-        class="absolute bottom-7 left-33 w-[58%] h-full object-contain z-0 pointer-events-none"
+        class="absolute bottom-6 right-23 w-[58%] h-full object-contain z-0 pointer-events-none"
+        alt="tag-decoration-line"
+      />
+      <img 
+        :src="tagLineImg2" 
+        class="absolute top-13 right-23 w-[38%] h-full object-contain z-0 pointer-events-none"
         alt="tag-decoration-line"
       />
 

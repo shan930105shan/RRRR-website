@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { ref, watch, computed } from 'vue';
 
 // 定義 Props
 const props = defineProps<{
@@ -18,7 +18,29 @@ watch(() => props.work, () => {
   activeImgIndex.value = 0;
 });
 
-// 修正紅線錯誤：使用函式來處理賦值
+/**
+ * 核心邏輯：計算動態顯示的縮圖範圍
+ * 永遠只回傳最多 3 個索引，並讓當前索引盡量在中間
+ */
+const visibleThumbnailIndices = computed(() => {
+  const total = props.work?.images?.length || 0;
+  if (total <= 3) {
+    // 如果總數小於等於 3，就全部顯示
+    return Array.from({ length: total }, (_, i) => i);
+  }
+
+  // 如果超過 3 張，計算起始位置
+  // 試著讓 activeImgIndex 放在索引 1 (中間)
+  let start = activeImgIndex.value - 1;
+
+  // 邊界檢查：不能小於 0
+  if (start < 0) start = 0;
+  // 邊界檢查：不能讓末尾超過總數
+  if (start + 3 > total) start = total - 3;
+
+  return Array.from({ length: 3 }, (_, i) => start + i);
+});
+
 const setImgIndex = (idx: number) => {
   activeImgIndex.value = idx;
 };
@@ -78,21 +100,20 @@ const close = () => {
             > &gt; </button>
           </div>
 
-          <div class="mt-6 flex gap-3 overflow-x-auto py-2 scrollbar-hide">
+          <div class="mt-6 flex justify-center gap-3 py-2">
             <button 
-              v-for="(img, idx) in work?.images" 
+              v-for="idx in visibleThumbnailIndices" 
               :key="idx"
               @click="setImgIndex(idx)"
               class="w-18 aspect-square flex-shrink-0 border-2 transition-all duration-300"
               :class="activeImgIndex === idx ? 'border-pink-500 scale-105 shadow-md' : 'border-transparent opacity-60 hover:opacity-100'"
             >
-              <img :src="img" class="w-full h-full object-cover" />
+              <img :src="work?.images[idx]" class="w-full h-full object-cover" />
             </button>
           </div>
         </div>
 
         <div class="w-full md:w-[55%] p-8 md:p-14 bg-white flex flex-col overflow-y-auto">
-          
           <div class="mb-12">
             <h2 class="text-5xl font-black mb-3 tracking-tighter">{{ work?.title }}</h2>
             <h3 class="text-l font-bold text-gray-800 mb-8">{{ work?.subtitle }}</h3>
@@ -118,7 +139,6 @@ const close = () => {
               </div>
             </div>
           </div>
-
         </div>
 
       </div>
@@ -127,24 +147,12 @@ const close = () => {
 </template>
 
 <style scoped>
-/* 淡入淡出動畫 */
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.4s ease;
 }
 .fade-enter-from, .fade-leave-to {
   opacity: 0;
 }
-
-/* 隱藏捲軸但保留功能 (Chrome/Safari) */
-.scrollbar-hide::-webkit-scrollbar {
-  height: 4px;
-}
-.scrollbar-hide::-webkit-scrollbar-thumb {
-  background: #eee;
-  border-radius: 10px;
-}
-
-/* 讓文字區塊滾動更順暢 */
 .overflow-y-auto {
   scrollbar-gutter: stable;
 }

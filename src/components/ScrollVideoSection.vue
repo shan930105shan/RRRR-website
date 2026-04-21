@@ -3,7 +3,6 @@ import { ref, onMounted } from 'vue';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// 註冊套件
 gsap.registerPlugin(ScrollTrigger);
 
 const containerRef = ref(null);
@@ -13,19 +12,17 @@ onMounted(() => {
   const video = videoRef.value;
   if (!video) return;
 
-  // 確保影片元數據載入，才能抓到正確的 duration
   video.addEventListener('loadedmetadata', () => {
     gsap.to(video, {
-      currentTime: video.duration || 1, // 將時間軸映射到影片長度
+      currentTime: video.duration || 1,
       ease: "none",
       scrollTrigger: {
         trigger: containerRef.value,
         start: "top top",
-        // 修改這裡：讓結束點更精確
-        end: "bottom bottom", 
+        // 增加滾動距離，讓影片播放感更細膩 (例如 300%)
+        end: "+=300%", 
         scrub: 1,
         pin: true,
-        // 新增：播完後自動取消固定，讓捲軸順著滑下去
         pinSpacing: true, 
       }
     });
@@ -34,11 +31,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <div ref="containerRef" class="relative w-full h-[100vh] bg-white">
-    
-    <div class="sticky top-0 w-full h-screen flex items-center justify-center">
+  <div ref="containerRef" class="w-full bg-black overflow-hidden">
+    <div class="w-full h-screen flex items-center justify-center">
       
-      <div class="h-full aspect-[16/9] bg-gray-100 relative">
+      <div class="w-full h-full relative">
         <video
           ref="videoRef"
           src="@/assets/Info.mp4"
@@ -54,8 +50,7 @@ onMounted(() => {
 </template>
 
 <style scoped>
-/* 避免影片在某些瀏覽器出現微小跳動 */
 video {
-  will-change: contents;
+  will-change: transform; /* 改用 transform 效能較佳 */
 }
 </style>

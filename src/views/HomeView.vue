@@ -20,29 +20,32 @@
     >
       <div class="flex w-max animate-[scroll-left_40s_linear_infinite] group-hover:[animation-play-state:paused]">
         <div class="flex items-center" v-for="i in 2" :key="i">
+
+
           <div class="flex items-center px-[40px] whitespace-nowrap">
-            <span class="font-[800] text-[1.2rem] mr-[15px]">校內展 Campus Exhibition</span>
-            <span class="font-[600] text-[1.5rem]">05.01</span>
-            <img src="@/assets/plane.png" class="h-[24px] mx-[10px]" />
-            <span class="font-[600] text-[1.5rem]">05.04</span>
-            <span class="font-[500] text-[1rem] ml-[10px] text-[#333]">北科藝文中心</span>
+            <span class="font-[600] text-[1.0rem] mr-[15px]">新一代設計展 Young Designers' Exhibition</span>
+            <span class="font-[600] text-[1.0rem]">2O26.O5.22 Fri.</span>
+            <span class="font-[600] text-[1.0rem]"> → </span>
+            <span class="font-[600] text-[1.0rem]">O5.25 Mon.</span>
+            <span class="font-[600] text-[1.0rem] ml-[15px]">南港展覽館二館 Taipei Nangang Exhibition Center Hall 2</span>
           </div>
 
           <div class="flex items-center px-[40px] whitespace-nowrap">
-            <span class="font-[800] text-[1.2rem] mr-[15px]">新一代設計展 YODEX</span>
-            <span class="font-[600] text-[1.5rem]">05.22</span>
-            <img src="@/assets/plane.png" class="h-[24px] mx-[10px]" />
-            <span class="font-[600] text-[1.5rem]">05.25</span>
-            <span class="font-[500] text-[1rem] ml-[10px] text-[#333]">南港展覽館二館</span>
+            <span class="font-[600] text-[1.0rem] mr-[15px]">放視大賞 Vision Get Wild Award </span>
+            <span class="font-[600] text-[1.0rem]">2O26.O5.28 Thu.</span>
+            <span class="font-[600] text-[1.0rem]"> → </span>
+            <span class="font-[600] text-[1.0rem]">O5.3O Sat.</span>
+            <span class="font-[600] text-[1.0rem] ml-[15px]">高雄展覽館南館 Kaohsiung Exhibition Center South Hall</span>
           </div>
 
           <div class="flex items-center px-[40px] whitespace-nowrap">
-            <span class="font-[800] text-[1.2rem] mr-[15px]">放視大賞 Vision Get Wild</span>
-            <span class="font-[600] text-[1.5rem]">05.28</span>
-            <img src="@/assets/plane.png" class="h-[24px] mx-[10px]" />
-            <span class="font-[600] text-[1.5rem]">05.30</span>
-            <span class="font-[500] text-[1rem] ml-[10px] text-[#333]">高雄展覽館南館</span>
+            <span class="font-[600] text-[1.0rem] mr-[15px]">校內展 On-campus Exhibition</span>
+            <span class="font-[600] text-[1.0rem]">2O26.O5.O1 Fri..</span>
+            <span class="font-[600] text-[1.0rem]"> → </span>
+            <span class="font-[600] text-[1.0rem]">O5.O4 Mon.</span>
+            <span class="font-[600] text-[1.0rem] ml-[15px]">北科藝文中心 TaipeiTech Arts and  Cultural Center</span>
           </div>
+          
         </div>
       </div>
     </section>
@@ -67,6 +70,7 @@
     </section>
 
     <ScrollVideoSection />
+
     <section 
       ref="section3"
       class="w-full py-[60px] pb-[100px] flex justify-center bg-white"

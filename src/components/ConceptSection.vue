@@ -9,6 +9,7 @@ const allAvatars = Array.from({ length: 10 }, (_, i) =>
 // 畫面上顯示的 8 個位置
 const displayAvatars = ref([...allAvatars.slice(0, 8)]);
 
+
 let timer: number | null = null;
 
 const startRandomChange = () => {
@@ -18,7 +19,7 @@ const startRandomChange = () => {
     // 隨機選取庫裡的一張圖 (0~9)
     const poolIndex = Math.floor(Math.random() * 10);
     
-    displayAvatars.value[displayIndex] = allAvatars[poolIndex];
+    displayAvatars.value[displayIndex] = allAvatars[poolIndex]!;
   }, 100); // 每 0.8 秒變換一次，頻率可調
 };
 

@@ -9,40 +9,59 @@ gsap.registerPlugin(ScrollTrigger);
 const sectionRef = ref(null);
 const goodsItems = ref([]);
 
-// 準備你的四張圖
+// 準備周邊資料
 const goods = [
-  { id: 1, name: '卡套', src: new URL('@/assets/goods/card-case.png', import.meta.url).href, class: 'w-120 -top-80 right-[25%]' },
-  { id: 2, name: '織帶', src: new URL('@/assets/goods/ribbon.png', import.meta.url).href, class: 'w-120 -top-30 right-[20%]' },
-  { id: 3, name: '書籤', src: new URL('@/assets/goods/bookmark.png', import.meta.url).href, class: 'w-200 top-40 left-[20%]' },
-  { id: 4, name: '貼紙包', src: new URL('@/assets/goods/stickers.png', import.meta.url).href, class: 'w-120 top-10 right-[15%]' },
+  { 
+    id: 1, 
+    price: '$350',
+    src: new URL('@/assets/goods/card-case.png', import.meta.url).href, 
+    class: 'w-120 -top-80 right-[25%] z-10' 
+  },
+  { 
+    id: 2, 
+    price: '$150',
+    src: new URL('@/assets/goods/ribbon.png', import.meta.url).href, 
+    class: 'w-120 -top-30 right-[20%] z-20' 
+  },
+  { 
+    id: 3, 
+    price: '$50',
+    src: new URL('@/assets/goods/bookmark.png', import.meta.url).href, 
+    class: 'w-200 top-40 left-[20%] z-10' 
+  },
+  { 
+    id: 4, 
+    price: '$100',
+    src: new URL('@/assets/goods/stickers.png', import.meta.url).href, 
+    class: 'w-120 top-10 right-[15%] z-25' 
+  },
 ];
 
 onMounted(() => {
-  // 建立掉落動畫
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: sectionRef.value,
-      start: "top 60%", // 當區塊頂部到達視窗 60% 時開始掉落
+      start: "top 60%",
       toggleActions: "play none none none"
     }
   });
 
   tl.from(goodsItems.value, {
-    y: -800,           // 從上方 800px 處掉落
-    rotation: -15,     // 掉落時帶一點旋轉更自然
+    y: -800,
+    rotation: -15,
     opacity: 0,
     duration: 1.2,
-    stagger: 0.3,       // 每張圖片間隔 0.3 秒出現
+    ease: "bounce.out",
+    stagger: 0.3,
     onComplete: () => {
-      // 掉落完成後，為每一張圖片開啟平滑浮動
       goodsItems.value.forEach((el, index) => {
         gsap.to(el, {
-          y: "random(-15, 15)", // 在 -15px 到 15px 之間隨機浮動
+          y: "random(-15, 15)",
           duration: "random(2, 3)",
-          repeat: -1,           // 無限循環
-          yoyo: true,           // 來回播放
-          ease: "sine.inOut",   // 平滑的進出效果
-          delay: index * 0.2    // 錯開浮動的起點
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+          delay: index * 0.2
         });
       });
     }
@@ -51,9 +70,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <section ref="sectionRef" class="relative w-full min-h-screen bg-white py-20 px-10">
+  <section ref="sectionRef" class="relative w-full min-h-screen bg-white py-20 px-10 overflow-visible">
     
-    <div class="absolute top-10 left-10 w-40 md:w-40 z-20">
+    <div class="absolute top-10 left-10 w-40 z-20">
       <img :src="goodsTitle" alt="周邊" class="w-full h-auto object-contain" />
     </div>
 
@@ -62,10 +81,20 @@ onMounted(() => {
         v-for="(item, index) in goods" 
         :key="item.id"
         ref="goodsItems"
-        class="absolute"
+        class="absolute group cursor-pointer"
         :class="item.class"
       >
-        <img :src="item.src" :alt="item.name" class="w-full h-auto object-contain drop-shadow-2xl" />
+        <div class="relative w-full h-full"> <img 
+            :src="item.src" 
+            class="w-full h-auto block object-contain drop-shadow-2xl transition-all duration-300 group-hover:brightness-0" 
+        />
+        
+        <div class="absolute inset-0 z-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+            <span class="text-white text-xl font-black bg-black/60 px-4 py-2 rounded-sm backdrop-blur-md">
+            {{ item.price }}
+            </span>
+        </div>
+        </div>
       </div>
     </div>
 
@@ -77,13 +106,15 @@ onMounted(() => {
         <div class="w-6 h-6 bg-gray-300 rounded-sm"></div>
       </div>
     </div>
-
   </section>
 </template>
 
 <style scoped>
-/* 確保圖片不會遮擋文字互動，或根據需求調整 z-index */
 .absolute {
   will-change: transform;
+}
+/* 強制剪影效果：如果 Tailwind 失效可啟用此段 */
+.group:hover img {
+  filter: brightness(0);
 }
 </style>

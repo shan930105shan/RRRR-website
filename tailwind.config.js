@@ -16,7 +16,7 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['"Zalando Sans"', '"Noto Sans TC"', 'sans-serif'],
+        sans: ['"Noto Sans TC"', 'sans-serif'],
       },
     },
   },

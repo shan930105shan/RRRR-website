@@ -26,15 +26,15 @@ const goods = [
   },
   { 
     id: 3, 
-    price: '$80',
+    price: 'FREE',
     src: new URL('@/assets/goods/bookmark.png', import.meta.url).href, 
     class: 'w-200 top-30 left-[10%] z-10' 
   },
   { 
     id: 4, 
-    price: 'FREE',
+    price: '$80',
     src: new URL('@/assets/goods/stickers.png', import.meta.url).href, 
-    class: 'w-120 top-10 right-[15%] z-25' 
+    class: 'w-120 top-20 right-[15%] z-25' 
   },
   { 
     id: 5, 

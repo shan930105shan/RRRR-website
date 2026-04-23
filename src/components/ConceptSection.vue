@@ -48,11 +48,6 @@ onUnmounted(() => {
         結，其咀嚼、吹出至迸發的動態過程，映射了創作中不斷推敲與轉譯的狀態。
       </p>
 
-      <p class="text-[1.1rem] leading-[2] mb-8 tracking-widest">
-        進一步拆解其行為結構——「咀嚼 → 吹出 → 迸發」，恰與創作三階段形成<br>
-        完美的對位關係。當泡泡迸發，其瞬間產生的響聲與空間共振——<br>
-        誠如我們的每一件作品與每一次表達，正持續震盪並改變著未來的走向<br>
-      </p>
     </div>
 
     <div class="w-full grid grid-cols-4 md:grid-cols-8">

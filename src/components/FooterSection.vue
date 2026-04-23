@@ -6,9 +6,9 @@ import iconX from '@/assets/footer/x.png';
 
 // 定義社群連結資料
 const socialLinks = [
-  { id: 'ig', src: iconIg, url: 'https://instagram.com/your_account', alt: 'Instagram' },
-  { id: 'in', src: iconIn, url: 'https://linkedin.com/in/your_profile', alt: 'LinkedIn' },
-  { id: 'x',  src: iconX,  url: 'https://x.com/your_account', alt: 'X' },
+  { id: 'ig', src: iconIg, url: 'https://instagram.com/ntut.ixd', alt: 'Instagram' },
+  { id: 'in', src: iconIn, alt: 'LinkedIn' },
+  { id: 'x',  src: iconX, alt: 'X' },
 ];
 </script>
 

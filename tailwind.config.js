@@ -14,7 +14,10 @@ export default {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-50%)' },
         }
-      }
+      },
+      fontFamily: {
+        sans: ['"Zalando Sans"', '"Noto Sans TC"', 'sans-serif'],
+      },
     },
   },
   plugins: [],

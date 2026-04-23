@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar">
     <div class="logo">
-      <img src="@/assets/logo.png" alt="Logo" />
+      <img src="@/assets/logo.png" alt="Logo" class="h-15" />
     </div>
     <ul class="nav-links">
       <li @click="scrollToSection('aboutus')" class="nav-item">關於我們</li>
@@ -55,6 +55,7 @@ const scrollToSection = (id) => {
 }
 
 .nav-links {
+  cursor: pointer;
   display: flex;
   list-style: none;
   gap: 30px; /* 選單之間的距離 */

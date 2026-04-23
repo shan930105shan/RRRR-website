@@ -27,7 +27,7 @@ const teaserVideos = [
   },
   { 
     id: 4, 
-    src: new URL('../assets/previewVideo/teaser4.jpg', import.meta.url).href, 
+    src: new URL('../assets/previewVideo/teaser4.mp4', import.meta.url).href, 
     label: '(RRRR)', 
     ratio: 'aspect-[5/4]', 
     class: 'bottom-[5%] left-[15%] w-[28%]' 

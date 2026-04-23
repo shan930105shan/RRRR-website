@@ -110,11 +110,16 @@ const section1 = ref<HTMLElement | null>(null);
 const section2 = ref<HTMLElement | null>(null);
 const section3 = ref<HTMLElement | null>(null);
 const section4 = ref<HTMLElement | null>(null);
+const section5 = ref<HTMLElement | null>(null);
+const section6 = ref<HTMLElement | null>(null);
+const section7 = ref<HTMLElement | null>(null);
+const section8 = ref<HTMLElement | null>(null);
+const section9 = ref<HTMLElement | null>(null);
 
 let observer: IntersectionObserver | null = null;
 
 onMounted(() => {
-  const sectionRefs = [section0, section1, section2, section3, section4];
+  const sectionRefs = [section0, section1, section2, section3, section4, section5, section6, section7, section8, section9];
   
   // 設定交叉觀察器
   observer = new IntersectionObserver((entries) => {

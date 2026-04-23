@@ -4,10 +4,12 @@
       <img src="@/assets/logo.png" alt="Logo" />
     </div>
     <ul class="nav-links">
+      <li @click="scrollToSection('aboutus')" class="nav-item">關於我們</li>
       <li @click="scrollToSection('work-introduction')" class="nav-item">作品介紹</li>
-      <li>畢籌組資訊</li>
-      <li @click="scrollToSection('promotional-video')" class="nav-item">宣傳片</li>
-      <li>周邊</li>
+      <li @click="scrollToSection('teaser-video')" class="nav-item">宣傳片</li>
+      <li @click="scrollToSection('goods')" class="nav-item">周邊</li>
+      <li @click="scrollToSection('sponsor')" class="nav-item">贊助夥伴</li>
+      <li @click="scrollToSection('advisor')" class="nav-item">指導老師</li>
     </ul>
   </nav>
 </template>

@@ -14,27 +14,33 @@ const goodsItems = ref([]);
 const goods = [
   { 
     id: 1, 
-    price: '$350',
+    price: '$279',
     src: new URL('@/assets/goods/card-case.png', import.meta.url).href, 
     class: 'w-120 -top-80 right-[25%] z-10' 
   },
   { 
     id: 2, 
-    price: '$150',
+    price: '$149',
     src: new URL('@/assets/goods/ribbon.png', import.meta.url).href, 
     class: 'w-120 -top-30 right-[20%] z-20' 
   },
   { 
     id: 3, 
-    price: '$50',
+    price: '$80',
     src: new URL('@/assets/goods/bookmark.png', import.meta.url).href, 
     class: 'w-200 top-40 left-[20%] z-10' 
   },
   { 
     id: 4, 
-    price: '$100',
+    price: 'FREE',
     src: new URL('@/assets/goods/stickers.png', import.meta.url).href, 
     class: 'w-120 top-10 right-[15%] z-25' 
+  },
+  { 
+    id: 5, 
+    price: '$200',
+    src: new URL('@/assets/goods/poster.png', import.meta.url).href, 
+    class: 'w-140 top-120 right-[15%] z-25' 
   },
 ];
 

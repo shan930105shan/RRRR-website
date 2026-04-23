@@ -50,7 +50,7 @@
       </div>
     </section>
 
-    <div ref="section2">
+    <div ref="section2" id="aboutus">
       <ConceptSection />
     </div>
     
@@ -60,21 +60,30 @@
     </div>
     
 
-    <div ref="section4">
+    <div ref="section4" id="work-introduction">
       <WorkScrollSection/>
     </div>
 
-    <div ref="section5">
+    <div ref="section5" id="teaser-video">
      <TeaserSection />
      </div>
 
-     <div ref="section6">
+     <div ref="section6" id="goods">
      <GoodsSection />
      </div>
 
-     <div ref="section7">
+     <div ref="section7" id="sponsor">
      <SponsorSection />
      </div>
+
+     <div ref="section8" id="advisor">
+     <AdvisorSection />
+     </div>
+
+      <div ref="section9" id="footer">
+        <FooterSection />
+      </div>
+
 
   </main>
 </template>
@@ -91,7 +100,8 @@ import ConceptSection from '@/components/ConceptSection.vue';
 import GoodsSection from '@/components/GoodsSection.vue'; 
 import BubbleTheorySection from '@/components/BubbleTheorySection.vue';
 import SponsorSection from '@/components/SponsorSection.vue';
-
+import AdvisorSection from '@/components/AdvisorSection.vue';
+import FooterSection from '@/components/FooterSection.vue';
 
 // --- 滾動偵測與索引管理 ---
 const activeIndex = ref(0);

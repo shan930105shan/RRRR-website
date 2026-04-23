@@ -129,7 +129,7 @@ const close = () => {
                 :key="mIdx" 
                 class="w-[85px] flex flex-col items-center text-center group"
               >
-                <div class="w-full aspect-[3/4] bg-gray-100 mb-3 overflow-hidden shadow-sm group-hover:shadow-md transition-shadow">
+                <div class="w-full aspect-[3/4] bg-gray-100 mb-3 overflow-hidden transition-shadow">
                   <img :src="member.img" class="w-full h-full object-cover transition-all duration-500" />
                 </div>
                 <p class="text-sm font-bold text-black mb-1 whitespace-nowrap">{{ member.name }}</p>

@@ -7,7 +7,7 @@
       ref="section0" 
       class="w-full flex justify-center items-center py-[40px]"
     >
-      <div class="w-[90%] max-w-[1400px]">
+      <div class="w-[100%] h-full">
         <video autoplay muted loop playsinline class="w-full h-auto block">
           <source src="@/assets/hero-video.mp4" type="video/mp4" />
         </video>
@@ -16,7 +16,7 @@
 
     <section 
       ref="section1"
-      class="w-full overflow-hidden border-t border-black py-[25px] bg-white group"
+      class="w-full overflow-hidden py-[15px] bg-white group"
     >
       <div class="flex w-max animate-[scroll-left_40s_linear_infinite] group-hover:[animation-play-state:paused]">
         <div class="flex items-center" v-for="i in 2" :key="i">
@@ -54,26 +54,11 @@
       <ConceptSection />
     </div>
     
-    <ScrollVideoSection />
 
-    <section 
-      ref="section3"
-      class="w-full py-[100px] px-[5%] flex justify-center bg-white"
-    >
-      <div class="max-w-[1200px] w-full flex flex-col md:flex-row items-center gap-[60px]">
-        <div class="flex-1 text-left">
-          <h2 class="text-[1.8rem] font-[800] mb-[30px] leading-[1.4]">“ 吐出我們不懼破格的無限延續創造力 ”</h2>
-          <div class="text-[1rem] leading-[1.8] text-[#333] tracking-[0.05rem]">
-            <p class="mb-[20px]">在網站設計上，我們將「破圖」的精神融入視覺互動：部分關鍵圖像將以 3D 方式呈現，並結合滑鼠互動。體驗者在瀏覽時，這些元素將搭配「破圖」動畫變化，讓您直觀地感受到打破僵固界限展現的創造力。</p>
-            <p>本畢業製作網頁採用一頁式設計，旨在提供連貫沉浸的體驗。當體驗者平滑滾動時，即是參與創作產出的探索旅程。各組作品資訊將配合流暢動畫呈現在網站中；而每一次點擊，都將如爆破般的能量釋放。</p>
-          </div>
-        </div>
-
-        <div class="flex-1 mt-10 md:mt-0">
-          <RotatingArrow :src="arrowImg" className="w-full max-w-[500px] h-auto" />
-        </div>
-      </div>
-    </section>
+    <div ref="section3">
+      <BubbleTheorySection/>
+    </div>
+    
 
     <div ref="section4">
       <WorkScrollSection/>
@@ -93,13 +78,14 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
 import WorkScrollSection from '@/components/WorkScrollSection.vue';
-import RotatingArrow from '@/components/RotatingArrow.vue';
+//import RotatingArrow from '@/components/RotatingArrow.vue';
 import FloatingEmoji from '@/components/FloatingEmoji.vue'; // 引入組件
-import arrowImg from '@/assets/rrrr-logo-graffiti.png';
+//import arrowImg from '@/assets/rrrr-logo-graffiti.png';
 import ScrollVideoSection from '@/components/ScrollVideoSection.vue';
 import TeaserSection from '@/components/TeaserSection.vue';
 import ConceptSection from '@/components/ConceptSection.vue';
 import GoodsSection from '@/components/GoodsSection.vue'; 
+import BubbleTheorySection from '@/components/BubbleTheorySection.vue';
 
 
 // --- 滾動偵測與索引管理 ---

@@ -27,7 +27,7 @@ const teaserVideos = [
   },
   { 
     id: 4, 
-    src: new URL('../assets/previewVideo/teaser4.mp4', import.meta.url).href, 
+    src: new URL('../assets/previewVideo/teaser4.jpg', import.meta.url).href, 
     label: '(RRRR)', 
     ratio: 'aspect-[5/4]', 
     class: 'bottom-[5%] left-[15%] w-[28%]' 
@@ -38,7 +38,7 @@ const teaserVideos = [
 <template>
   <section class="relative w-full min-h-screen bg-transparent py-20 px-[5%] overflow-hidden">
     
-    <div class="absolute top-10 left-10 w-20 md:w-20 z-20">
+    <div class="absolute top-10 left-10 w-20 md:w-20 z-0">
       <img :src="teaserTitle" alt="Taser 前導片" class="w-full h-auto object-contain" />
     </div>
 
@@ -50,7 +50,7 @@ const teaserVideos = [
         class="absolute group transition-transform duration-500 hover:scale-105"
         :class="video.class"
       >
-        <div class="relative w-full bg-gray-100 overflow-hidden shadow-lg">
+        <div class="relative w-full bg-gray-100 overflow-hidden">
           <video 
             :src="video.src" 
             autoplay 
@@ -69,6 +69,7 @@ const teaserVideos = [
         <p class="mt-3 text-sm font-medium text-black font-mono">
           {{ video.label }}
         </p>
+
       </div>
 
     </div>

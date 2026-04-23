@@ -80,7 +80,7 @@ const close = () => {
           </svg>
         </button>
 
-        <div class="w-full md:w-[45%] bg-white p-6 flex flex-col">
+        <div class="w-full md:w-[400px] bg-white p-6 flex flex-col">
           <div class="relative flex-1 flex items-center justify-center group min-h-[300px]">
             <button 
               v-if="work?.images?.length > 1" 
@@ -90,7 +90,7 @@ const close = () => {
             
             <img 
               :src="work?.images[activeImgIndex]" 
-              class="w-full aspect-[3/4] max-w-[20vw] object-contain drop-shadow-xl" 
+              class="w-full aspect-[3/4] max-w-[240px] object-contain drop-shadow-xl" 
             />
 
             <button 

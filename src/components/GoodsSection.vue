@@ -28,7 +28,7 @@ const goods = [
     id: 3, 
     price: '$80',
     src: new URL('@/assets/goods/bookmark.png', import.meta.url).href, 
-    class: 'w-200 top-40 left-[20%] z-10' 
+    class: 'w-200 top-30 left-[10%] z-10' 
   },
   { 
     id: 4, 

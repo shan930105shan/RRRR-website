@@ -37,7 +37,7 @@ onMounted(() => {
       rotation: -360,
       ease: "none",
     }, 0); // 同時執行
-  }, sectionRef.value); // 限定 scope 為此組件
+  }, sectionRef.value!); // 限定 scope 為此組件
 });
 
 onUnmounted(() => {

@@ -72,6 +72,10 @@
      <GoodsSection />
      </div>
 
+     <div ref="section7">
+     <SponsorSection />
+     </div>
+
   </main>
 </template>
 
@@ -81,11 +85,12 @@ import WorkScrollSection from '@/components/WorkScrollSection.vue';
 //import RotatingArrow from '@/components/RotatingArrow.vue';
 import FloatingEmoji from '@/components/FloatingEmoji.vue'; // 引入組件
 //import arrowImg from '@/assets/rrrr-logo-graffiti.png';
-import ScrollVideoSection from '@/components/ScrollVideoSection.vue';
+//import ScrollVideoSection from '@/components/ScrollVideoSection.vue';
 import TeaserSection from '@/components/TeaserSection.vue';
 import ConceptSection from '@/components/ConceptSection.vue';
 import GoodsSection from '@/components/GoodsSection.vue'; 
 import BubbleTheorySection from '@/components/BubbleTheorySection.vue';
+import SponsorSection from '@/components/SponsorSection.vue';
 
 
 // --- 滾動偵測與索引管理 ---

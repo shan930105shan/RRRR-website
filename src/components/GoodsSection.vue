@@ -3,6 +3,7 @@ import { ref, onMounted } from 'vue';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import goodsTitle from '@/assets/goods-title.png';
+import goodsTitleZ from '@/assets/goods-title-z.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -98,13 +99,8 @@ onMounted(() => {
       </div>
     </div>
 
-    <div class="absolute bottom-10 right-20 text-right">
-      <p class="text-3xl font-black italic tracking-tighter uppercase opacity-50 mb-4">More R R R R</p>
-      <div class="flex justify-end gap-4">
-        <div class="w-6 h-6 bg-gray-300 rounded-sm"></div>
-        <div class="w-6 h-6 bg-gray-300 rounded-sm"></div>
-        <div class="w-6 h-6 bg-gray-300 rounded-sm"></div>
-      </div>
+    <div class="absolute bottom-10 right-10 w-40 z-20">
+      <img :src="goodsTitleZ" alt="周邊" class="w-full h-auto object-contain" />
     </div>
   </section>
 </template>

@@ -4,19 +4,10 @@
 /* 1. 引入 Noto Sans TC (Google Fonts) */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');
 
-/* 2. 定義 Zalando Sans (假設你有字體檔，請確保路徑正確) */
-@font-face {
-  font-family: 'Zalando Sans';
-  src: url('@/assets/fonts/ZalandoSans-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
 @theme {
   /* 3. 定義全域字體家族 */
   /* 順序：英文(Zalando) -> 中文(Noto Sans TC) -> 系統備援 */
-  --font-sans: "Zalando Sans", "Noto Sans TC", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Noto Sans TC", ui-sans-serif, system-ui, sans-serif;
 
   /* 你原本的動畫設定 */
   --animate-scroll-left: scroll-left 40s linear infinite;

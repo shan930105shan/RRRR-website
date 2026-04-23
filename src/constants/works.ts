@@ -24,6 +24,8 @@ export const WORK_DATA: WorkItem[] = [
     images: [
       new URL('../assets/work/group19/1.png', import.meta.url).href,
       new URL('../assets/work/group19/2.png', import.meta.url).href,
+      new URL('../assets/work/group19/3.png', import.meta.url).href,
+      new URL('../assets/work/group19/4.png', import.meta.url).href,
     ],
     members: [
       { name: "謝丞武", role: "3D建模", img: new URL('../assets/member/group19/1.jpg', import.meta.url).href },

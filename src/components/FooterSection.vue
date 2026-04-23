@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import moreRRRR from '@/assets/footer/more.png'; // 替換為你的圖片路徑
 import iconIg from '@/assets/footer/ig.png';
-import iconIn from '@/assets/footer/in.png';
-import iconX from '@/assets/footer/x.png';
+import iconFB from '@/assets/footer/fb.png';
+import iconThreads from '@/assets/footer/threads.png';
 
 // 定義社群連結資料
 const socialLinks = [
   { id: 'ig', src: iconIg, url: 'https://instagram.com/ntut.ixd', alt: 'Instagram' },
-  { id: 'in', src: iconIn, alt: 'LinkedIn' },
-  { id: 'x',  src: iconX, alt: 'X' },
+  { id: 'fb', src: iconFB, url: 'https://facebook.com/NTUT111IXD', alt: 'FB' },
+  { id: 'threads',  src: iconThreads, url: 'https://www.threads.com/@ntut.ixd', alt: 'Threads' },
 ];
 </script>
 

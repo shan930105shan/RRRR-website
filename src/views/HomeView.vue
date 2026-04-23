@@ -3,16 +3,18 @@
     
     <FloatingEmoji :activeIndex="activeIndex" />
 
-    <section 
-      ref="section0" 
-      class="w-full flex justify-center items-center py-[40px]"
-    >
-      <div class="w-[100%] h-full">
-        <video autoplay muted loop playsinline class="w-full h-auto block">
-          <source src="@/assets/hero-video.mp4" type="video/mp4" />
-        </video>
+    <section ref="section0" class="w-full flex justify-center items-center py-[40px]">
+      <div class="w-full h-full">
+        <video 
+          :src="heroVideo" 
+          autoplay 
+          muted 
+          loop 
+          playsinline 
+          class="w-full h-auto block"
+        ></video>
       </div>
-    </section>
+  </section>
 
     <section 
       ref="section1"
@@ -102,6 +104,8 @@ import BubbleTheorySection from '@/components/BubbleTheorySection.vue';
 import SponsorSection from '@/components/SponsorSection.vue';
 import AdvisorSection from '@/components/AdvisorSection.vue';
 import FooterSection from '@/components/FooterSection.vue';
+
+import heroVideo from '@/assets/hero-video.mp4';
 
 // --- 滾動偵測與索引管理 ---
 const activeIndex = ref(0);

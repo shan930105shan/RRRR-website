@@ -24,28 +24,28 @@ const goods = [
     id: 2, 
     price: '$149',
     src: new URL('@/assets/goods/ribbon.png', import.meta.url).href, 
-    mobileClass: 'w-[55%] left-[40%] mt-[-10%] rotate-[8deg] mb-10',
+    mobileClass: 'w-[85%] left-[10%] mt-[-25%] z-99 rotate-[8deg] mb-[2%]',
     desktopClass: 'md:inset-auto md:absolute md:-top-30 md:right-[20%] md:w-120 md:rotate-0 md:mt-0' 
   },
   { 
     id: 3, 
     price: 'FREE',
     src: new URL('@/assets/goods/bookmark.png', import.meta.url).href, 
-    mobileClass: 'w-[75%] left-[10%] rotate-[-3deg] mb-10',
+    mobileClass: 'w-[105%] left-[5%] mt-[-55%] rotate-[-3deg] mb-10',
     desktopClass: 'md:inset-auto md:absolute md:top-30 md:left-[10%] md:w-200 md:rotate-0 md:mt-0' 
   },
   { 
     id: 4, 
     price: '$80',
     src: new URL('@/assets/goods/stickers.png', import.meta.url).href, 
-    mobileClass: 'w-[50%] left-[45%] mt-[-15%] rotate-[12deg] mb-10',
+    mobileClass: 'w-[75%] left-[30%] mt-[-85%] z-99 rotate-[12deg] mb-10',
     desktopClass: 'md:inset-auto md:absolute md:top-20 md:right-[15%] md:w-120 md:rotate-0 md:mt-0' 
   },
   { 
     id: 5, 
     price: '$200',
     src: new URL('@/assets/goods/poster.png', import.meta.url).href, 
-    mobileClass: 'w-[85%] left-[7%] mt-[5%] rotate-[-2deg] mb-20',
+    mobileClass: 'w-[105%] left-[-20%] mt-[-57%] rotate-[-2deg] mb-20',
     desktopClass: 'md:inset-auto md:absolute md:top-120 md:right-[15%] md:w-140 md:rotate-0 md:mt-0' 
   },
 ];

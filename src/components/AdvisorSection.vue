@@ -2,7 +2,7 @@
 import { ref, onMounted } from 'vue';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import advisorTitleImg from '@/assets/advisor-title.png'; // 確保你的圖片路徑正確
+import advisorTitleImg from '@/assets/advisor-title.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -43,44 +43,45 @@ const advisors = [
 ];
 
 onMounted(() => {
-  // 建立飛入動畫
   gsap.from(cardsRef.value, {
     scrollTrigger: {
       trigger: sectionRef.value,
-      start: "top 70%", // 當區塊進入視窗 70% 時開始動畫
+      start: "top 70%",
       toggleActions: "play none none none"
     },
-    x: -100,           // 從左邊 100px 處飛入
-    opacity: 0,        // 從透明開始
-    duration: 1,       // 動畫持續 1 秒
-    stagger: 0.3,      // 每位老師間隔 0.3 秒，形成依序出現的效果
-    ease: "power2.out" // 平滑的減速曲線
+    x: -50, // 手機版稍微縮小飛入距離，避免破版
+    opacity: 0,
+    duration: 1,
+    stagger: 0.2,
+    ease: "power2.out"
   });
 });
 </script>
 
 <template>
-  <section ref="sectionRef" class="relative w-full bg-white pb-40 px-10 md:px-20 overflow-hidden">
+  <section ref="sectionRef" class="relative w-full bg-white pb-40 px-8 md:px-20 overflow-hidden">
     
-    <div class="mb-20 -ml-4 md:-ml-10 top-10 left-10 w-42 md:w-50 z-20">
+    <div class="mb-16 md:mb-20 -ml-2 md:-ml-10 pt-10 w-36 md:w-50 z-20">
       <img :src="advisorTitleImg" alt="指導老師 Advisor" class="h-auto object-contain" />
     </div>
 
-    <div class="flex flex-col gap-16 max-w-[1000px]">
+    <div class="flex flex-col gap-12 md:gap-16 max-w-[1000px]">
       <div 
         v-for="(pro, index) in advisors" 
         :key="index"
         ref="cardsRef"
         class="advisor-card"
       >
-        <div class="flex items-baseline gap-4 mb-2">
-          <h3 class="text-xl font-bold tracking-widest text-black">{{ pro.name }}</h3>
-          <span class="text-lg text-gray-500 font-light">{{ pro.enName }}</span>
+        <div class="flex items-baseline gap-3 md:gap-4 mb-2">
+          <h3 class="text-lg md:text-xl font-bold tracking-widest text-black">{{ pro.name }}</h3>
+          <span class="text-sm md:text-lg text-gray-500 font-light">{{ pro.enName }}</span>
         </div>
 
-        <p class="text-lg text-black mb-1 tracking-wider">{{ pro.title }}</p>
+        <p class="text-sm md:text-lg text-black mb-1 tracking-wider leading-relaxed">
+          {{ pro.title }}
+        </p>
         
-        <p class="text-sm text-gray-500 tracking-widest font-light">
+        <p class="text-[10px] md:text-sm text-gray-400 tracking-widest font-light leading-relaxed">
           ｜ {{ pro.tags }} ｜
         </p>
       </div>
@@ -91,7 +92,6 @@ onMounted(() => {
 
 <style scoped>
 .advisor-card {
-  /* 設定 will-change 提高動畫效能 */
   will-change: transform, opacity;
 }
 </style>

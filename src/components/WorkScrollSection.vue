@@ -65,7 +65,7 @@ const closePopup = () => {
 
 // 🚩 計算當前選中的作品標題或 ID 用於手機版顯示
 const currentWorkTitle = computed(() => {
-  return WORK_DATA.find(item => item.id === works[currentIndex.value].id)?.title || `Project ${currentIndex.value + 1}`;
+  return WORK_DATA.find(item => item.id === works[currentIndex.value]?.id)?.title || `Project ${currentIndex.value + 1}`;
 });
 </script>
 

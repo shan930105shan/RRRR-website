@@ -16,7 +16,7 @@ const goods = [
     price: '$279',
     src: new URL('@/assets/goods/card-case.png', import.meta.url).href, 
     // 手機版：使用 relative，給寬度，移除負的 top
-    mobileClass: 'w-[60%] left-[5%] rotate-[-5deg] mb-10',
+    mobileClass: 'w-[80%] left-[5%] rotate-[-5deg] mb-[-20%]',
     // 電腦版：用 md:inset-auto 清除手機所有定位，再重新給原本的位置
     desktopClass: 'md:inset-auto md:absolute md:-top-80 md:right-[25%] md:w-120 md:rotate-0 md:mb-0' 
   },

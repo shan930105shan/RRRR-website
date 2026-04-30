@@ -37,8 +37,8 @@ onUnmounted(() => {
     <div class="max-w-[1200px] mx-auto px-10 relative z-10">
       <div class="w-full flex justify-center">
         <div class="max-w-[600px] text-center text-black leading-[2.2] tracking-widest text-[0.95rem] md:text-[1.1rem]">
-          <p class="mb-10 font-bold">近一步拆解其行為結構——「咀嚼 → 吹出 → 迸發」</p>
-          <p class="mb-10 opacity-80">我們接收訊息、反覆咀嚼；在內化中等待行動的契機。</p>
+          <p class="mb-10 font-bold">進一步拆解其行為結構——「咀嚼 → 吹出 → 迸發」<br />與創作三階段形成完美對位</p>
+          <p class="mb-10 opacity-80">我們接收訊息、反覆咀嚼；在內化中等待行動的契機。<br />掌控吹出的節奏，泡泡糖迸裂時的聲響，正在引發周遭空間的共振</p>
           <p class="font-bold">每一次咀嚼、每一件作品，都在改變未來的走向。</p>
         </div>
       </div>

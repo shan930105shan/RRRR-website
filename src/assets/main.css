@@ -25,4 +25,16 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+   /* 手機版預設 */
+  p {
+    @apply text-[0.85rem] leading-[1.8] tracking-widest;
+  }
+
+  /* 電腦版 (768px 以上) 自動變大 */
+  @media (min-width: 768px) {
+    p {
+      @apply text-[1.1rem] leading-[2];
+    }
+  }
 }
+

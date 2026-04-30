@@ -1,22 +1,34 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
-import { RouterView } from 'vue-router';
+import { ref, onMounted, onUnmounted, computed } from 'vue';
+import { RouterView, useRoute } from 'vue-router';
 import AppNavbar from './components/AppNavbar.vue';
 
-// ==========================================
-// 1. 引入圖片資源
-// ==========================================
+// 1. 引入 Emoji 圖片資源
 import face1 from '@/assets/emoji/face1.png';
 import face2 from '@/assets/emoji/face2.png';
 import face3 from '@/assets/emoji/face3.png';
 
+const route = useRoute();
 const faceImages = [face1, face2, face3];
 
 // ==========================================
-// 2. 換臉邏輯
+// 2. 擋板與 Debug 顯示邏輯
+// ==========================================
+// 偵測網址是否有 ?debug=1
+const isDebugMode = computed(() => {
+  return route.query.debug === '1';
+});
+
+// 只有在「不是 Debug 模式」時才渲染擋板 HTML
+const showBlocker = computed(() => {
+  return !isDebugMode.value;
+});
+
+// ==========================================
+// 3. 換臉計時器邏輯
 // ==========================================
 const currentFaceIndex = ref(0);
-let faceTimer: number | undefined = undefined;
+let faceTimer: number | any = undefined;
 
 const swapFace = () => {
   let nextIndex: number;
@@ -27,17 +39,16 @@ const swapFace = () => {
 };
 
 onMounted(() => {
-  // 每 1 秒換一次臉
-  faceTimer = window.setInterval(swapFace, 1000);
+  faceTimer = setInterval(swapFace, 1000);
 });
 
 onUnmounted(() => {
-  if (faceTimer !== undefined) clearInterval(faceTimer);
+  if (faceTimer) clearInterval(faceTimer);
 });
 </script>
 
 <template>
-  <div class="mobile-blocker">
+  <div v-if="showBlocker" class="mobile-blocker">
     <div class="blocker-content">
       <div class="emoji-container">
         <transition name="face-fade" mode="out-in">
@@ -51,24 +62,41 @@ onUnmounted(() => {
       </div>
 
       <h1>行動裝置版正在製作中 :RRRR</h1>
-      <p>為了確保最佳觀賞體驗，<br>請先使用電腦瀏覽器觀賞喲!</p>
+      <p>為了確保最佳觀賞體驗，<br>請先使用電腦瀏覽器觀賞喲！</p>
+      
+      <div v-if="isDebugMode" class="debug-hint">
+        Debug 模式已開啟
+      </div>
     </div>
   </div>
 
-  <div class="main-layout">
+  <div class="main-layout" :class="{ 'debug-view': isDebugMode }">
     <AppNavbar />
     <RouterView />
   </div>
 </template>
 
-<style scoped>
-/* 擋板基本樣式 */
+<style>
+/* --- 全域樣式 --- */
+body {
+  margin: 0;
+  background-color: white;
+  font-family: "Zalando Sans", "Noto Sans TC", sans-serif;
+}
+
+/* 當 Modal 開啟時隱藏 Navbar */
+body[style*="overflow: hidden"] nav, 
+body[style*="overflow: hidden"] .navbar {
+  display: none !important;
+}
+
+/* --- 擋板樣式 (Scoped 建議拿掉或改為全域確保層級) --- */
 .mobile-blocker {
-  display: none;
+  display: none; /* 預設在電腦版隱藏 */
   position: fixed;
   inset: 0;
   background-color: white;
-  z-index: 99999;
+  z-index: 999999; /* 絕對最上層 */
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -82,51 +110,61 @@ onUnmounted(() => {
   align-items: center;
 }
 
-/* Emoji 容器樣式 */
 .emoji-container {
-  width: 150px; /* 手機版建議尺寸 */
+  width: 150px;
   height: 150px;
   margin-bottom: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .emoji-img {
   width: 100%;
   height: 100%;
-  object-contain: contain;
+  object-fit: contain;
 }
 
 .mobile-blocker h1 {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 900;
   margin-bottom: 1rem;
+  color: black;
 }
 
 .mobile-blocker p {
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: #666;
   line-height: 1.6;
 }
 
-/* 換臉時的淡入淡出動畫 */
+/* 換臉動畫 */
 .face-fade-enter-active,
 .face-fade-leave-active {
-  transition: opacity 0s ease;
+  transition: opacity 0.15s ease;
 }
 .face-fade-enter-from,
 .face-fade-leave-to {
   opacity: 0;
 }
 
-/* 響應式判斷 */
+/* --- 響應式核心邏輯 --- */
 @media (max-width: 1023px) {
+  /* 手機版：顯示擋板，隱藏主內容 */
   .mobile-blocker {
     display: flex;
   }
+  
   .main-layout {
     display: none;
+  }
+
+  /* 核心修正：如果是 Debug 模式，強制救回主內容 */
+  .main-layout.debug-view {
+    display: block !important;
+  }
+  
+  /* 如果在 Debug 模式，也要強行關掉已經渲染出來的擋板 */
+  .debug-view ~ .mobile-blocker,
+  .main-layout.debug-view + .mobile-blocker {
+    display: none !important;
   }
 }
 </style>

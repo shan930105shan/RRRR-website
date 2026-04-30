@@ -6,7 +6,8 @@
     <section ref="section0" class="w-full flex justify-center items-center py-[40px]">
       <div class="w-full h-full">
         <video 
-          :src="heroVideo" 
+          :key="currentVideoSrc"
+          :src="currentVideoSrc" 
           autoplay 
           muted 
           loop 
@@ -14,7 +15,7 @@
           class="w-full h-auto block"
         ></video>
       </div>
-  </section>
+    </section>
 
     <section 
       ref="section1"
@@ -22,8 +23,6 @@
     >
       <div class="flex w-max animate-[scroll-left_40s_linear_infinite] group-hover:[animation-play-state:paused]">
         <div class="flex items-center" v-for="i in 2" :key="i">
-
-
           <div class="flex items-center px-[40px] whitespace-nowrap">
             <span class="font-[600] text-[1.0rem] mr-[15px]">新一代設計展 Young Designers' Exhibition</span>
             <span class="font-[600] text-[1.0rem]">2O26.O5.22 Fri.</span>
@@ -45,9 +44,8 @@
             <span class="font-[600] text-[1.0rem]">2O26.O5.O1 Fri..</span>
             <span class="font-[600] text-[1.0rem]"> → </span>
             <span class="font-[600] text-[1.0rem]">O5.O4 Mon.</span>
-            <span class="font-[600] text-[1.0rem] ml-[15px]">北科藝文中心 TaipeiTech Arts and  Cultural Center</span>
+            <span class="font-[600] text-[1.0rem] ml-[15px]">北科藝文中心 TaipeiTech Arts and Cultural Center</span>
           </div>
-          
         </div>
       </div>
     </section>
@@ -55,48 +53,42 @@
     <div ref="section2" id="aboutus">
       <ConceptSection />
     </div>
-    
 
     <div ref="section3">
       <BubbleTheorySection/>
     </div>
-    
 
     <div ref="section4" id="work-introduction">
       <WorkScrollSection/>
     </div>
 
     <div ref="section5" id="teaser-video">
-     <TeaserSection />
-     </div>
+      <TeaserSection />
+    </div>
 
-     <div ref="section6" id="goods">
-     <GoodsSection />
-     </div>
+    <div ref="section6" id="goods">
+      <GoodsSection />
+    </div>
 
-     <div ref="section7" id="sponsor">
-     <SponsorSection />
-     </div>
+    <div ref="section7" id="sponsor">
+      <SponsorSection />
+    </div>
 
-     <div ref="section8" id="advisor">
-     <AdvisorSection />
-     </div>
+    <div ref="section8" id="advisor">
+      <AdvisorSection />
+    </div>
 
-      <div ref="section9" id="footer">
-        <FooterSection />
-      </div>
-
+    <div ref="section9" id="footer">
+      <FooterSection />
+    </div>
 
   </main>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, computed } from 'vue';
 import WorkScrollSection from '@/components/WorkScrollSection.vue';
-//import RotatingArrow from '@/components/RotatingArrow.vue';
-import FloatingEmoji from '@/components/FloatingEmoji.vue'; // 引入組件
-//import arrowImg from '@/assets/rrrr-logo-graffiti.png';
-//import ScrollVideoSection from '@/components/ScrollVideoSection.vue';
+import FloatingEmoji from '@/components/FloatingEmoji.vue';
 import TeaserSection from '@/components/TeaserSection.vue';
 import ConceptSection from '@/components/ConceptSection.vue';
 import GoodsSection from '@/components/GoodsSection.vue'; 
@@ -105,7 +97,21 @@ import SponsorSection from '@/components/SponsorSection.vue';
 import AdvisorSection from '@/components/AdvisorSection.vue';
 import FooterSection from '@/components/FooterSection.vue';
 
+// 影片資源匯入
 import heroVideo from '@/assets/hero-video.mp4';
+import mobileVideo from '@/assets/mobile-video.mp4';
+
+// --- 視窗寬度與影片切換邏輯 ---
+const windowWidth = ref(typeof window !== 'undefined' ? window.innerWidth : 1200);
+
+const handleResize = () => {
+  windowWidth.value = window.innerWidth;
+};
+
+// 根據寬度計算當前影片路徑 (以 1024px 為電腦版分界線)
+const currentVideoSrc = computed(() => {
+  return windowWidth.value < 1024 ? mobileVideo : heroVideo;
+});
 
 // --- 滾動偵測與索引管理 ---
 const activeIndex = ref(0);
@@ -123,13 +129,15 @@ const section9 = ref<HTMLElement | null>(null);
 let observer: IntersectionObserver | null = null;
 
 onMounted(() => {
+  // 監聽視窗縮放
+  window.addEventListener('resize', handleResize);
+
   const sectionRefs = [section0, section1, section2, section3, section4, section5, section6, section7, section8, section9];
   
   // 設定交叉觀察器
   observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        // 找出當前進入視窗的是哪一個區塊
         const index = sectionRefs.findIndex(refItem => refItem.value === entry.target);
         if (index !== -1) {
           activeIndex.value = index;
@@ -137,17 +145,18 @@ onMounted(() => {
       }
     });
   }, {
-    threshold: 0.3, // 區塊露出 30% 即算切換
-    rootMargin: "-10% 0px -10% 0px" // 微調觸發範圍，讓切換更精準
+    threshold: 0.3,
+    rootMargin: "-10% 0px -10% 0px"
   });
 
-  // 開始觀察
+  // 開始觀察區塊
   sectionRefs.forEach(s => {
     if (s.value) observer?.observe(s.value);
   });
 });
 
 onUnmounted(() => {
+  window.removeEventListener('resize', handleResize);
   observer?.disconnect();
 });
 </script>

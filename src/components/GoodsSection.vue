@@ -87,7 +87,7 @@ onMounted(() => {
 <template>
   <section ref="sectionRef" class="relative w-full min-h-screen bg-white py-40 md:py-20 px-4 md:px-10 overflow-y-visible">
     
-    <div class="absolute top-10 left-6 w-28 md:w-40 z-[30]">
+    <div class="absolute top-10 left-6 w-40 md:w-60 z-[30]">
       <img :src="goodsTitle" alt="周邊" class="w-full h-auto object-contain" />
     </div>
 
@@ -116,7 +116,7 @@ onMounted(() => {
       </div>
     </div>
 
-    <div class="absolute bottom-10 right-6 w-28 md:w-40 z-[30]">
+    <div class="absolute bottom-10 right-6 w-40 md:w-60 z-[30]">
       <img :src="goodsTitleZ" alt="周邊" class="w-full h-auto object-contain" />
     </div>
   </section>

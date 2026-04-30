@@ -61,7 +61,7 @@ onMounted(() => {
 <template>
   <section ref="sectionRef" class="relative w-full bg-white pb-40 px-8 md:px-20 overflow-hidden">
     
-    <div class="mb-16 md:mb-20 -ml-2 md:-ml-10 pt-10 w-36 md:w-50 z-20">
+    <div class="mb-16 md:mb-20 -ml-2 md:-ml-10 pt-10 w-52 md:w-70 z-20">
       <img :src="advisorTitleImg" alt="指導老師 Advisor" class="h-auto object-contain" />
     </div>
 

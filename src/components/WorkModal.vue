@@ -14,17 +14,34 @@ watch(() => props.work, () => {
   activeImgIndex.value = 0;
 });
 
-// 核心修復：彈窗開啟時鎖定背景頁面滾動，防止左右晃動
+// 紀錄開啟彈窗前的捲動位置
+let scrollPos = 0;
+
+// 核心修復：彈窗開啟時「物理性鎖定」背景
 watch(() => props.isOpen, (newVal) => {
   if (newVal) {
+    scrollPos = window.scrollY;
+    // 使用 fixed 鎖定 body 可以徹底防止手指縮放時背景亂跑
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollPos}px`;
+    document.body.style.width = '100%';
     document.body.style.overflow = 'hidden';
   } else {
+    // 恢復背景狀態
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
     document.body.style.overflow = '';
+    // 恢復原本的捲動位置
+    window.scrollTo(0, scrollPos);
   }
 });
 
-// 組件卸載時確保恢復 body 狀態
+// 組件卸載時確保恢復 body 狀態，避免網頁卡死
 onUnmounted(() => {
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.width = '';
   document.body.style.overflow = '';
 });
 
@@ -49,7 +66,7 @@ const close = () => { emit('close'); };
 
 <template>
   <Transition name="fade">
-    <div v-if="isOpen" class="fixed inset-0 z-[9999] flex items-center justify-center p-0 md:p-8 overflow-hidden">
+    <div v-if="isOpen" class="fixed inset-0 z-[999] flex items-center justify-center p-0 md:p-8 overflow-hidden">
       
       <div class="absolute inset-0 bg-black/90 backdrop-blur-md" @click="close"></div>
 

@@ -12,17 +12,20 @@ import AppNavbar from './components/AppNavbar.vue';
 
 <style>
 /* --- 全域樣式 --- */
-body {
+html,body {
   margin: 0;
   background-color: white;
   font-family: "Zalando Sans", "Noto Sans TC", sans-serif;
   /* 🚩 建議加入這一行，確保 RWD 物件出界時不會導致手機版左右晃動 */
   overflow-x: hidden; 
   width: 100%;
+  max-width: 100vw;
   /* 🚩 防止內容撐開網頁寬度，徹底消除白邊 */
   overflow-x: hidden; 
   /* 🚩 防止手機瀏覽器預設的彈性滾動導致白邊出現 */
   position: relative;
+  margin: 0;
+  padding: 0;
 }
 
 /* 當 Modal 開啟時隱藏 Navbar（保留你原本的邏輯） */

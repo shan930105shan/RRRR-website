@@ -138,7 +138,6 @@ const bubbles = Array.from({ length: TOTAL_BUBBLES }).map((_, i) => ({
   z-index: 1000;
   transition: background-color 0.3s ease;
   background-color: transparent;
-  overflow: hidden; 
 }
 
 /* 🌸 圓球容器 */
@@ -219,11 +218,14 @@ const bubbles = Array.from({ length: TOTAL_BUBBLES }).map((_, i) => ({
 }
 
 .hamburger {
-  background: none;
+  background: transparent; /* 確保背景透明 */
   border: none;
   cursor: pointer;
   z-index: 1100;
   padding: 10px;
+  display: block; /* 確保它是區塊顯示 */
+  min-width: 44px; /* 手機點擊最小建議範圍 */
+  min-height: 44px;
 }
 
 .hamburger-box {
@@ -235,10 +237,11 @@ const bubbles = Array.from({ length: TOTAL_BUBBLES }).map((_, i) => ({
 }
 
 .line {
-  width: 100%;
+  width: 24px; /* 明確寬度 */
   height: 2px;
-  background-color: black;
+  background-color: #000000 !important; /* 強制黑色，防止撞色 */
   transition: all 0.3s ease;
+  display: block;
 }
 
 .mobile-menu {

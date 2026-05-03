@@ -42,7 +42,7 @@ const teaserVideos = [
 <template>
   <section class="relative w-full min-h-screen bg-transparent py-32 md:py-20 px-[5%] overflow-hidden">
     
-    <div class="absolute top-10 left-10 w-20 z-10">
+    <div class="absolute top-10 left-10 w-20 z-0">
       <img :src="teaserTitle" alt="Taser 前導片" class="w-full h-auto object-contain" />
     </div>
 
